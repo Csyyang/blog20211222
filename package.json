@@ -8,9 +8,11 @@
   },
   "dependencies": {
     "animate.css": "^4.1.1",
+    "element-plus": "^1.2.0-beta.6",
     "sass": "^1.45.1",
     "scss": "^0.2.4",
-    "vite-plugin-style-import": "^1.4.0",
+    "unplugin-auto-import": "^0.5.4",
+    "unplugin-vue-components": "^0.17.9",
     "vue": "^3.2.25",
     "vue-router": "4"
   },
