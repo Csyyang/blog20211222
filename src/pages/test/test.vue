@@ -1,3 +1,10 @@
+<script setup>
+import cHeaderVue from '../../components/cHeader.vue'
+
+
+</script>
+
+
 <template>
-<div>this is test</div>
+    <cHeaderVue></cHeaderVue>
 </template>
