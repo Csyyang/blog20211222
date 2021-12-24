@@ -41,9 +41,12 @@ const switchValue = ref(false)
 .imgs {
     height: calc(100vh - 200px);
 }
+.swiper-mian {
+    border-radius: 10px;
+    overflow: hidden;
+}
 .imgs {
     width: 100%;
-    border-radius: 10px;
     object-fit: cover;
     transition: transform 1s;
 

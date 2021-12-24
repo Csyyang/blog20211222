@@ -1,7 +1,5 @@
 <script setup>
-import cHeaderVue from '../../components/cHeader.vue'
-
-
+import cHeaderVue from '../../components/header.vue'
 </script>
 
 
