@@ -1,12 +1,19 @@
-@forward 'element-plus/theme-chalk/src/common/var.scss' with (
-  $colors: (
-    'primary': (
-      'base': green,
-    ),
-  )
-);
-
-* {
-    margin: 0;
-    padding: 0;
+:root {
+  --el-border-color-base: none;
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  #app {
+    width: 100%;
+    height: 100%;
+  }
+}
+
