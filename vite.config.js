@@ -11,7 +11,8 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
       "coms": path.resolve(__dirname, './src/components'),
-      "pages": path.resolve(__dirname, './src/pages')
+      "pages": path.resolve(__dirname, './src/pages'),
+      "img": path.resolve(__dirname, './src/assets')
     },
     extensions: ['.js', '.json','.mjs','.ts']
   },
