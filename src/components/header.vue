@@ -1,6 +1,5 @@
 <script setup>
 import {useRouter, useRoute} from 'vue-router'
-import { computed } from 'vue'
 
 const route = useRoute()
 
@@ -27,11 +26,11 @@ const navs  = [
         name: '留言'
     },
     {
-        path: '/broken2',
+        path: '/links',
         name: '友邻'
     },
     {
-        path: '/broken3',
+        path: '/friends',
         name: '圈子'
     },
 ]

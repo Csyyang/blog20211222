@@ -1,5 +1,7 @@
 :root {
-  --el-border-color-base: none;
+  .el-button {
+    border: none;
+  }
 }
 * {
   margin: 0;
