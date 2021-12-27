@@ -17,5 +17,6 @@ import oyo from 'img/oyo.jpeg'
     flex-direction: column;
     align-items: center;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 </style>
