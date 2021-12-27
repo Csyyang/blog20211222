@@ -2,12 +2,13 @@
 import E from 'wangeditor'
 import { onMounted, ref } from 'vue'
 
+const idRad = 'edit' + (Math.floor(Math.random() * 100000))
 const html = ref()
 const disable = ref(true)
 
 let editor
 onMounted(() => {
-    editor = new E('#div1')
+    editor = new E('#' + idRad)
     editor.config.height = 100
 
     editor.config.excludeMenus = [
@@ -39,7 +40,7 @@ const editHtml = () => {
 </script>
 
 <template>
-    <div id="div1"></div>
+    <div :id="idRad"></div>
 
     <div class="btn">
         <el-button :disabled="disable" @click="editHtml" size="mini" type="primary">留言</el-button>

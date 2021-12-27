@@ -1,10 +1,20 @@
 <script setup>
 import oyo from 'img/oyo.jpeg'
+import { ref } from 'vue'
+import editorVue from '../../../components/editor.vue'
+import commontVue from './comment.vue'
+
+const showEdit = ref(false)
+const showMore = ref(false)
 
 const props = defineProps({
     context: {
         type: String,
         default: ""
+    },
+    isParent: {
+        type: Boolean,
+        default: false
     }
 })
 
@@ -16,11 +26,28 @@ const props = defineProps({
             <el-avatar :size="36" :src="oyo"></el-avatar>
             <div class="message">
                 <span class="name font16 blod">csy</span>
-                <time class="font12 color-black-7">一天前</time>
-                <p class="introduce font12 color-black-7">前端工程师</p>
+                <span
+                    class="font12 color-black-7 btn"
+                    @click="showEdit = !showEdit"
+                >{{ showEdit ? '取消回复' : '回复' }}</span>
+                <p class="introduce font12 color-black-7">2012-12-22</p>
             </div>
         </div>
         <div class="context" v-html="props.context"></div>
+
+        <div v-if="isParent && showMore">
+            <commontVue context="1413243" />
+            <commontVue context="1413243" />
+            <commontVue context="1413243" />
+            <commontVue context="1413243" />
+            <commontVue context="1413243" />
+            <commontVue context="1413243" />
+        </div>
+
+        <!-- 编辑器 -->
+        <editorVue v-if="showEdit" />
+
+        <el-button @click="showMore = !showMore" size="mini">{{ showMore?'收起':'展开' }}</el-button>
     </div>
 </template>
 
@@ -37,6 +64,7 @@ const props = defineProps({
 }
 .header {
     display: flex;
+    align-items: center;
 }
 
 .message {
@@ -45,6 +73,15 @@ const props = defineProps({
 
 .name {
     margin-right: 10px;
+}
+
+.btn {
+    background-color: #0478be;
+    display: inline-block;
+    color: #fff;
+    padding: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 // 富文本

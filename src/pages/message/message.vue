@@ -14,7 +14,7 @@ import commentVue from './components/comment.vue';
         <editorVue />
 
         <div class="comment-box">
-            <commentVue context="发夹倒计时；阿手机到了；按实际拉手机到了几率大" />
+            <commentVue :isParent="true" context="发夹倒计时；阿手机到了；按实际拉手机到了几率大" />
             <commentVue context="发夹倒计时；阿手机到了；按实际拉手机到了几率大" />
             <commentVue context="发夹倒计时；阿手机到了；按实际拉手机到了几率大" />
             <commentVue context="发夹倒计时；阿手机到了；按实际拉手机到了几率大" />
