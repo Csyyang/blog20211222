@@ -2,14 +2,14 @@
 import headerVue from 'coms/header.vue'
 import swiperVue from './components/swiper.vue';
 import articlesVue from './components/articles.vue'
-import asidesVue from './components/asides.vue';
+import asidesVue from '../../components/asides.vue';
 </script>
 
 <template>
     <div id="index">
         <headerVue></headerVue>
 
-        <main>
+        <main class="main-box">
             <!-- 轮播 -->
             <swiperVue></swiperVue>
 
@@ -22,12 +22,6 @@ import asidesVue from './components/asides.vue';
 </template>
 
 <style lang="scss" scoped>
-main {
-    max-width: 1032px;
-    width: 100%;
-    margin: 0 auto;
-}
-
 .context {
     padding-top: 50px;
     display: flex;
