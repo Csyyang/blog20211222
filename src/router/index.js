@@ -5,6 +5,7 @@ import broken from 'pages/broken/broken.vue'
 import message from 'pages/message/message.vue'
 import links from 'pages/links/links.vue'
 import friends from 'pages/friends/friends.vue'
+import login from 'pages/login/login.vue'
 
 const routes = [
     { path: '/test', component: test },
@@ -12,7 +13,8 @@ const routes = [
     { path: '/broken', component: broken },
     { path: '/message', component: message },
     { path: '/links', component: links },
-    { path: '/friends', component: friends }
+    { path: '/friends', component: friends },
+    { path: '/login', component: login }
 ]
 
 const router = createRouter({

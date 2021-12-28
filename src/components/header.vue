@@ -60,7 +60,7 @@ export default {
 </script>
 
 
-<style lang="scss" >
+<style lang="scss" scoped>
 :root {
     .el-button {
         --el-button-bg-color: #f4f4f4;
