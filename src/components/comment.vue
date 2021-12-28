@@ -1,8 +1,8 @@
 <script setup>
 import oyo from 'img/oyo.jpeg'
 import { ref } from 'vue'
-import editorVue from '../../../components/editor.vue'
 import commontVue from './comment.vue'
+import editorVue from './editor.vue'
 
 const showEdit = ref(false)
 const showMore = ref(false)

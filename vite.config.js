@@ -16,6 +16,13 @@ export default defineConfig({
     },
     extensions: ['.js', '.json','.mjs','.ts']
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        charset: false
+      }
+    }
+  },
   plugins: [
     vue(),
     AutoImport({
