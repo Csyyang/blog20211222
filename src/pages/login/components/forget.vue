@@ -6,22 +6,17 @@ const emits = defineEmits(['chagnState'])
     <div class="login-box">
         <p class="header">blog</p>
 
-        <label class="labels" for="acc">
-            账号
-            <input id="acc" type="text" />
-        </label>
-
-        <label class="labels" for="pass">
-            密码
-            <input id="pass" type="password" />
+        <label class="labels" for="email">
+            邮箱
+            <input id="email" type="text" />
         </label>
 
         <div class="other">
-            <button class="pass-color" @click="emits('chagnState', 'forget')">忘记密码</button>
+            <button class="pass-color" @click="emits('chagnState', 'login')">返回登录</button>
             <button class @click="emits('chagnState', 'register')">注册</button>
         </div>
 
-        <div class="btn">登录</div>
+        <div class="btn">发送</div>
     </div>
 </template>
 

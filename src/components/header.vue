@@ -47,7 +47,7 @@ const navs  = [
                 <el-button v-for="item in navs" :class="[route.path === item.path?'checked':'']" @click="links(item.path)">{{item.name}}</el-button>
             </nav>
             <div class="login">
-                <el-button type="primary">登录</el-button>
+                <el-button type="primary" @click="router.push('/login')">登录</el-button>
             </div>
         </div>
     </header>

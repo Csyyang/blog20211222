@@ -2,14 +2,17 @@
 import { ref } from 'vue'
 import loginFormVue from './components/loginForm.vue';
 import registeVue from './components/registe.vue';
-const isLogin = ref(true)
+import forgetVue from './components/forget.vue';
+
+const states = ref('login')
 </script>
 
 <template>
   <div class="login">
     <div class="form-box">
-      <loginFormVue v-show="isLogin" @chagn-state="res => isLogin = res"></loginFormVue>
-      <registeVue v-if="!isLogin" @chagn-state="res => isLogin = res" />
+      <loginFormVue v-show="states == 'login'" @chagn-state="res => states = res"></loginFormVue>
+      <registeVue v-if="states == 'register'" @chagn-state="res => states = res" />
+      <forgetVue v-if="states == 'forget'" @chagn-state="res => states = res" />
       <div id="filter"></div>
     </div>
   </div>
@@ -22,7 +25,7 @@ const isLogin = ref(true)
   align-items: center;
   width: 100%;
   height: 100%;
-  background: url(../../assets/login-bg.jpeg) no-repeat center center fixed;
+  background: url('http://yangyangcsy.cn/images/login-bg.jpeg') no-repeat center center fixed;
   background-size: cover;
   .form-box {
     position: relative;
@@ -36,7 +39,7 @@ const isLogin = ref(true)
       position: absolute;
       width: 100vw;
       height: 100vh;
-      background: url(../../assets/login-bg.jpeg) no-repeat center center fixed;
+      background: url('http://yangyangcsy.cn/images/login-bg.jpeg') no-repeat center center fixed;
       background-size: cover;
       filter: blur(15px);
       z-index: -1;

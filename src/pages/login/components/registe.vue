@@ -11,9 +11,9 @@ const emits = defineEmits(['chagnState'])
             <input id="acc" type="text" />
         </label>
 
-        <label class="labels" for="acc">
+        <label class="labels" for="name">
             昵称
-            <input id="acc" type="text" />
+            <input id="name" type="text" />
         </label>
 
         <label class="labels" for="password">
@@ -32,7 +32,7 @@ const emits = defineEmits(['chagnState'])
         </label>
 
         <div class="other">
-            <button class="pass-color" @click="emits('chagnState', true)">返回登录页</button>
+            <button class="pass-color" @click="emits('chagnState', 'login')">返回登录页</button>
         </div>
 
         <div class="btn">注册</div>
