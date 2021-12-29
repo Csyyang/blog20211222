@@ -49,7 +49,7 @@ const editHtml = () => {
     <div v-html="html"></div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .btn {
     margin: 10px 0;
     display: flex;

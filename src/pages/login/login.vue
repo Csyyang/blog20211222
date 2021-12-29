@@ -1,10 +1,16 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import loginFormVue from './components/loginForm.vue';
+import registeVue from './components/registe.vue';
+const isLogin = ref(true)
+</script>
 
 <template>
   <div class="login">
     <div class="form-box">
-      发大水发顺丰电动阀发生都
-      <div id="a"></div>
+      <loginFormVue v-show="isLogin" @chagn-state="res => isLogin = res"></loginFormVue>
+      <registeVue v-if="!isLogin" @chagn-state="res => isLogin = res" />
+      <div id="filter"></div>
     </div>
   </div>
 </template>
@@ -22,11 +28,11 @@
     position: relative;
     z-index: 1;
     width: 500px;
-    height: 400px;
+    padding-bottom: 30px;
     overflow: hidden;
     border-radius: 10px;
-    border: 1px solid #75636e;
-    #a {
+    border: 1px solid #3a172c;
+    #filter {
       position: absolute;
       width: 100vw;
       height: 100vh;
