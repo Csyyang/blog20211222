@@ -5,6 +5,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
+import { TDesignResolver } from 'unplugin-vue-components/resolvers'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
@@ -12,9 +14,10 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
       "coms": path.resolve(__dirname, './src/components'),
       "pages": path.resolve(__dirname, './src/pages'),
-      "img": path.resolve(__dirname, './src/assets')
+      "img": path.resolve(__dirname, './src/assets'),
+      "api": path.resolve(__dirname, './src/api')
     },
-    extensions: ['.js', '.json','.mjs','.ts']
+    extensions: ['.js', '.json', '.mjs', '.ts']
   },
   css: {
     preprocessorOptions: {
@@ -23,13 +26,23 @@ export default defineConfig({
       }
     }
   },
+  server: {
+    proxy: {
+      '/test': {
+        target: 'http://127.0.0.1:8088',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/test/, '')
+      }
+
+    }
+  },
   plugins: [
     vue(),
     AutoImport({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver(),TDesignResolver()],
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver(),TDesignResolver()],
     }),
   ]
 })
