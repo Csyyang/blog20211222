@@ -1,5 +1,27 @@
 <script setup>
+import { register } from 'api/user'
+import { reactive} from 'vue'
+
 const emits = defineEmits(['chagnState'])
+
+
+const form = reactive({
+    account: '',
+    password: '',
+    password2: '',
+    username: '',
+    email: ''
+})
+
+
+// 提交表单
+const registerBtn = async () => {
+    const res = await register(form)
+    console.log(res)
+
+}
+
+
 </script>
 
 <template>
@@ -8,34 +30,34 @@ const emits = defineEmits(['chagnState'])
 
         <label class="labels" for="acc">
             账号
-            <input id="acc" type="text" />
+            <input v-model="form.account" id="acc" type="text" />
         </label>
 
         <label class="labels" for="name">
             昵称
-            <input id="name" type="text" />
+            <input v-model="form.username" id="name" type="text" />
         </label>
 
         <label class="labels" for="password">
             密码
-            <input id="password" type="password" />
+            <input v-model="form.password" id="password" type="password" />
         </label>
 
         <label class="labels" for="quire-pass">
             确认密码
-            <input id="quire-pass" type="password" />
+            <input v-model="form.password2" id="quire-pass" type="password" />
         </label>
 
         <label class="labels" for="pass">
             邮箱
-            <input id="pass" type="password" />
+            <input v-model="form.email" id="pass" />
         </label>
 
         <div class="other">
             <button class="pass-color" @click="emits('chagnState', 'login')">返回登录页</button>
         </div>
 
-        <div class="btn">注册</div>
+        <div class="btn" @click="registerBtn">注册</div>
     </div>
 </template>
 

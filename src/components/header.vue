@@ -1,16 +1,14 @@
 <script setup>
 import {useRouter, useRoute} from 'vue-router'
+import { useStore } from 'vuex'
+import { computed } from 'vue'
 
 const route = useRoute()
-
-
 const router = useRouter()
-
 
 const links = (link) => {
     router.push(link)
 }
-
 
 const navs  = [
     {
@@ -36,6 +34,9 @@ const navs  = [
 ]
 
 
+// store
+const store = useStore()
+const isLogin =  computed(() => store.state.user.isLogin)
 
 </script>
 
@@ -48,6 +49,7 @@ const navs  = [
             </nav>
             <div class="login">
                 <el-button type="primary" @click="router.push('/login')">登录</el-button>
+                
             </div>
         </div>
     </header>
@@ -65,6 +67,16 @@ export default {
     .el-button {
         --el-button-bg-color: #f4f4f4;
     }
+}
+:deep(.header-box .nav .el-button) {
+    background: none;
+}
+
+#c-header {
+    position: fixed;
+    top: 0;
+    z-index: 10000;
+    width: 100%;
 }
 .logo {
     line-height: 56px;
