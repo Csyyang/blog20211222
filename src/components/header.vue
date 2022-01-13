@@ -1,17 +1,22 @@
 <script setup>
-import {useRouter, useRoute} from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import { computed } from 'vue'
 import filterVue from './filter.vue'
+import { MessagePlugin } from 'tdesign-vue-next'
 
 const route = useRoute()
 const router = useRouter()
 
+/**
+ * 路由跳转
+ * @param { string } link  路径
+ */
 const links = (link) => {
     router.push(link)
 }
 
-const navs  = [
+const navs = [
     {
         path: '/',
         name: '首页'
@@ -35,9 +40,21 @@ const navs  = [
 ]
 
 
-// store
+/**
+ * 获取登录信息
+ */
 const store = useStore()
-const isLogin =  computed(() => store.state.user.isLogin)
+const isLogin = computed(() => store.state.user.isLogin)
+
+const userData = computed(() => store.state.user.userData)
+
+/**
+ * 登出
+ */
+const logout = () => {
+    store.dispatch('user/logOut')
+    MessagePlugin.success('登出成功')
+}
 
 </script>
 
@@ -46,11 +63,23 @@ const isLogin =  computed(() => store.state.user.isLogin)
         <div class="header-box">
             <div class="logo">blog</div>
             <nav class="nav">
-                <el-button v-for="item in navs" :class="[route.path === item.path?'checked':'']" @click="links(item.path)">{{item.name}}</el-button>
+                <el-button
+                    v-for="item in navs"
+                    :class="[route.path === item.path ? 'checked' : '']"
+                    @click="links(item.path)"
+                >{{ item.name }}</el-button>
             </nav>
             <div class="login">
-                <el-button type="primary" @click="router.push('/login')">登录</el-button>
-                
+                <el-dropdown v-if="isLogin">
+                    <el-avatar :size="36" :src="userData.avatar"></el-avatar>
+                    <template #dropdown>
+                        <el-dropdown-menu>
+                            <el-dropdown-item @click="links('/user')">用户信息</el-dropdown-item>
+                            <el-dropdown-item @click="logout" divided>退出登录</el-dropdown-item>
+                        </el-dropdown-menu>
+                    </template>
+                </el-dropdown>
+                <el-button v-else type="primary" @click="router.push('/login')">登录</el-button>
             </div>
         </div>
         <filterVue />

@@ -1,19 +1,37 @@
 :root {
   .el-button {
     border: none;
-    color: #DEDEDE;
-
+    color: #dedede;
     background: repeating-linear-gradient(45deg, #545454, transparent 100px);
     &:hover {
       color: #409eff;
     }
   }
   .el-card {
-    background-color: rgba(96,73,81,.1);
+    background-color: rgba(96, 73, 81, 0.1);
     border: none;
-    color: #DEDEDE;
+    color: #dedede;
+  }
+  .el-dropdown__popper.el-popper[role="tooltip"] {
+    background: none;
+  }
+  --el-text-color-regular: #dedede;
+  --el-border-color-light: none;
+  --el-border-color-lighter: none;
+  .el-dropdown-menu {
+    background-color: #998e9f;
+  }
+  .el-dropdown-menu__item:focus,
+  .el-dropdown-menu__item:not(.is-disabled):hover {
+    background-color: rgb(255,255,255,27%);
   }
 }
+
+.not-found {
+  text-align: center;
+  font-size: 400px;
+}
+
 * {
   margin: 0;
   padding: 0;

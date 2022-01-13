@@ -37,6 +37,9 @@ const user = {
                 commit('setToken', userRes.context.token)
                 return true
             }
+        },
+        logOut({ commit }) {
+            commit('changeLogin', false)
         }
     }
 }

@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router"
+import { createVNode } from 'vue'
 import test from 'pages/test/test.vue'
 import index from 'pages/index/index.vue'
 import broken from 'pages/broken/broken.vue'
@@ -7,6 +8,7 @@ import links from 'pages/links/links.vue'
 import friends from 'pages/friends/friends.vue'
 import login from 'pages/login/login.vue'
 
+
 const routes = [
     { path: '/test', component: test },
     { path: '/', component: index },
@@ -14,7 +16,13 @@ const routes = [
     { path: '/message', component: message },
     { path: '/links', component: links },
     { path: '/friends', component: friends },
-    { path: '/login', component: login }
+    { path: '/login', component: login },
+    { path: '/:pathMath(.*)', component: {
+            render() {
+                return createVNode('div', { className: 'not-found' }, '404');
+            }
+        }
+    }
 ]
 
 const router = createRouter({
