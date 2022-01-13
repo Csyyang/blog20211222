@@ -18,6 +18,10 @@ const form = reactive({
 const registerBtn = async () => {
     const res = await register(form)
     console.log(res)
+    if(res.code === '00') {
+        // 注册成功
+        emits('chagnState', 'login')
+    }
 
 }
 

@@ -2,6 +2,7 @@
 import {useRouter, useRoute} from 'vue-router'
 import { useStore } from 'vuex'
 import { computed } from 'vue'
+import filterVue from './filter.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -52,6 +53,7 @@ const isLogin =  computed(() => store.state.user.isLogin)
                 
             </div>
         </div>
+        <filterVue />
     </header>
 </template>
 <script>
@@ -75,8 +77,10 @@ export default {
 #c-header {
     position: fixed;
     top: 0;
-    z-index: 10000;
+    z-index: 1000;
     width: 100%;
+    border-bottom: 1px solid #767676;
+    overflow: hidden;
 }
 .logo {
     line-height: 56px;

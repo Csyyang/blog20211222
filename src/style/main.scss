@@ -1,11 +1,17 @@
 :root {
   .el-button {
     border: none;
+    color: #DEDEDE;
+
+    background: repeating-linear-gradient(45deg, #545454, transparent 100px);
+    &:hover {
+      color: #409eff;
+    }
   }
   .el-card {
     background-color: rgba(96,73,81,.1);
     border: none;
-    color: wheat;
+    color: #DEDEDE;
   }
 }
 * {

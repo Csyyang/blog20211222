@@ -10,7 +10,7 @@ import { Share, ChatDotRound, StarFilled } from '@element-plus/icons-vue'
         <header class="text-box">
             <p>最近碎语</p>
         </header>
-        <el-card class="box-card" :body-style="{ padding: '10px' }" shadow="hover">
+        <el-card class="box-card" :body-style="{ padding: '10px' }">
             <div class="header">
                 <el-avatar :size="36" :src="oyo"></el-avatar>
                 <div class="message">

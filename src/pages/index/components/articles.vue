@@ -18,7 +18,7 @@ const switchValue = ref(false)
             </div>
         </header>
 
-        <el-card class="box-card" :body-style="{ padding: '0px' }" shadow="hover">
+        <el-card class="box-card" :body-style="{ padding: '0px' }">
             <div class="img-box">
                 <img class="art-img" :src="art1" alt="art1" />
             </div>
@@ -30,7 +30,7 @@ const switchValue = ref(false)
             </article>
 
             <footer>
-                <el-button style="color: red">开始阅读</el-button>
+                <el-button>开始阅读</el-button>
 
                 <div class="tag">
                     <object class="see" :data="see" type="image/svg+xml"></object>
@@ -42,7 +42,7 @@ const switchValue = ref(false)
                 </div>
             </footer>
         </el-card>
-        <el-card class="box-card" :body-style="{ padding: '0px' }" shadow="hover">
+        <el-card class="box-card" :body-style="{ padding: '0px' }">
             <div class="img-box">
                 <img class="art-img" :src="art1" alt="art1" />
             </div>
@@ -54,7 +54,7 @@ const switchValue = ref(false)
             </article>
 
             <footer>
-                <el-button style="color: red">开始阅读</el-button>
+                <el-button>开始阅读</el-button>
 
                 <div class="tag">
                     <object class="see" :data="see" type="image/svg+xml"></object>
@@ -66,7 +66,7 @@ const switchValue = ref(false)
                 </div>
             </footer>
         </el-card>
-        <el-card class="box-card" :body-style="{ padding: '0px' }" shadow="hover">
+        <el-card class="box-card" :body-style="{ padding: '0px' }">
             <div class="img-box">
                 <img class="art-img" :src="art1" alt="art1" />
             </div>
@@ -78,7 +78,7 @@ const switchValue = ref(false)
             </article>
 
             <footer>
-                <el-button style="color: red">开始阅读</el-button>
+                <el-button>开始阅读</el-button>
 
                 <div class="tag">
                     <object class="see" :data="see" type="image/svg+xml"></object>
@@ -90,7 +90,7 @@ const switchValue = ref(false)
                 </div>
             </footer>
         </el-card>
-        <el-card class="box-card" :body-style="{ padding: '0px' }" shadow="hover">
+        <el-card class="box-card" :body-style="{ padding: '0px' }">
             <div class="img-box">
                 <img class="art-img" :src="art1" alt="art1" />
             </div>
@@ -102,7 +102,7 @@ const switchValue = ref(false)
             </article>
 
             <footer>
-                <el-button style="color: red">开始阅读</el-button>
+                <el-button>开始阅读</el-button>
 
                 <div class="tag">
                     <object class="see" :data="see" type="image/svg+xml"></object>
@@ -114,7 +114,7 @@ const switchValue = ref(false)
                 </div>
             </footer>
         </el-card>
-        <el-card class="box-card" :body-style="{ padding: '0px' }" shadow="hover">
+        <el-card class="box-card" :body-style="{ padding: '0px' }">
             <div class="img-box">
                 <img class="art-img" :src="art1" alt="art1" />
             </div>
@@ -126,7 +126,7 @@ const switchValue = ref(false)
             </article>
 
             <footer>
-                <el-button style="color: red">开始阅读</el-button>
+                <el-button>开始阅读</el-button>
 
                 <div class="tag">
                     <object class="see" :data="see" type="image/svg+xml"></object>
@@ -138,7 +138,7 @@ const switchValue = ref(false)
                 </div>
             </footer>
         </el-card>
-        <el-card class="box-card" :body-style="{ padding: '0px' }" shadow="hover">
+        <el-card class="box-card" :body-style="{ padding: '0px' }">
             <div class="img-box">
                 <img class="art-img" :src="art1" alt="art1" />
             </div>
@@ -150,7 +150,7 @@ const switchValue = ref(false)
             </article>
 
             <footer>
-                <el-button style="color: red">开始阅读</el-button>
+                <el-button>开始阅读</el-button>
 
                 <div class="tag">
                     <object class="see" :data="see" type="image/svg+xml"></object>
@@ -205,7 +205,7 @@ const switchValue = ref(false)
             font-weight: 500;
         }
         time {
-            color: #00000099;
+            color: #DEDEDE;
             font-size: 14px;
         }
         main {

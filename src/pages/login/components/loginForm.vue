@@ -1,5 +1,38 @@
 <script setup>
+import { useStore } from 'vuex'
+import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
+import { MessagePlugin } from 'tdesign-vue-next'
+
 const emits = defineEmits(['chagnState'])
+
+/**
+ * 表单
+ */
+const form = reactive({
+    account: '693765678',
+    password: 'CSY19961222'
+})
+
+/**
+ * 登录
+ */
+const store = useStore()
+
+const login = async () => {
+    const result = await store.dispatch('user/loginStore', form)
+    console.log(result)
+    if (result) {
+        MessagePlugin.success('登录成功')
+        goHome()
+    }
+}
+
+/**
+ * 回首页
+ */
+const router =  useRouter()
+const goHome = () => router.push('/')
 </script>
 
 <template>
@@ -8,12 +41,12 @@ const emits = defineEmits(['chagnState'])
 
         <label class="labels" for="acc">
             账号
-            <input id="acc" type="text" />
+            <input v-model="form.account" id="acc" type="text" />
         </label>
 
         <label class="labels" for="pass">
             密码
-            <input id="pass" type="password" />
+            <input v-model="form.password" id="pass" type="password" />
         </label>
 
         <div class="other">
@@ -21,7 +54,7 @@ const emits = defineEmits(['chagnState'])
             <button class @click="emits('chagnState', 'register')">注册</button>
         </div>
 
-        <div class="btn">登录</div>
+        <div class="btn" @click="login">登录</div>
     </div>
 </template>
 

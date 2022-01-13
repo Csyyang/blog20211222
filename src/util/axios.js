@@ -1,6 +1,8 @@
 import axios from "axios"
 import { ElLoading } from 'element-plus'
 import { MessagePlugin } from 'tdesign-vue-next'
+import store from '@/store/store'
+
 let loadingInstance // loading
 
 const request = axios.create({
@@ -12,6 +14,11 @@ const request = axios.create({
 request.interceptors.request.use(
     async config => {
         loadingInstance =  ElLoading.service()
+
+        let token  = store.state.user.token
+
+        config.headers['x-token'] = token?token:''
+        
         return config
     },
     error => {
