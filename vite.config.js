@@ -29,7 +29,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/test': {
-        target: 'http://127.0.0.1:8088',
+        target: 'http://localhost:8088',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/test/, '')
       }
@@ -39,10 +39,14 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
-      resolvers: [ElementPlusResolver(),TDesignResolver()],
+      resolvers: [ElementPlusResolver(),TDesignResolver({
+        library: 'vue-next'
+      })],
     }),
     Components({
-      resolvers: [ElementPlusResolver(),TDesignResolver()],
+      resolvers: [ElementPlusResolver(),TDesignResolver({
+        library: 'vue-next'
+      })],
     }),
   ]
 })

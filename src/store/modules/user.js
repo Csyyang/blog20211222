@@ -1,15 +1,23 @@
-import { login } from 'api/user'
+import { login, logOut } from 'api/user'
+
+const userData = JSON.parse(sessionStorage.getItem('userData'))
 
 const user = {
     namespaced: true,
-    state: () => ({
-        isLogin: false, // 是否登录
-        token: '', // 用户标识
-        userData: {
-            username: '', // 用户名
-            avatar: '' // 头像地址
+    state: () => {
+        if (!!userData && userData.isLogin === true) {
+            return userData
+        } else {
+            return {
+                isLogin: false, // 是否登录
+                token: '', // 用户标识
+                userData: {
+                    username: '', // 用户名
+                    avatar: '' // 头像地址
+                }
+            }
         }
-    }),
+    },
     mutations: {
         changeLogin(state, value) {
             state.isLogin = value
@@ -29,17 +37,28 @@ const user = {
          * 登录
          * @returns { boolean } 
          */
-        async loginStore({ commit }, form) {
+        async loginStore({ commit, state }, form) {
             const userRes = await login(form)
             if (userRes.code === '00') {
                 commit('changeLogin', true)
                 commit('setUserData', userRes.context.userData)
-                commit('setToken', userRes.context.token)
+                // commit('setToken', userRes.context.token)
+
                 return true
             }
         },
-        logOut({ commit }) {
-            commit('changeLogin', false)
+        /**
+         * 登出
+         * @returns boolean
+         */
+        async logOut({ commit }) {
+            const logoutRes = await logOut()
+            if (logoutRes.code == '00') {
+                commit('changeLogin', false)
+                return true
+            } else {
+                return false
+            }
         }
     }
 }

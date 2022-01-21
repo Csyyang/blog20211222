@@ -21,14 +21,41 @@ export function register(data = {}) {
  * @param { string } data.password 密码
  * @returns { promise }
  */
-export function login(data={}) {
-   return request.post('/user/login',data)
+export function login(data = {}) {
+   return request.post('/user/login', data)
+}
+
+/**
+ * 登出
+ * @param {*} data 
+ * @returns 
+ */
+export function logOut(data = {}) {
+   return request.post('/user/logOut')
 }
 
 /**
  * 获取用户基本信息
  * @returns { Promise }
  */
-export function getUser() {
+export function getUser(data={}) {
    return request.post('/user/getUser', data)
+}
+
+/**
+ * 邮箱校验
+ * @param {*} data 
+ * @returns 
+ */
+export function checkEmail(data={}) {
+   return request.post('/user/checkEmail', data)
+}
+
+export function reset(data={}) {
+   return request.post('/user/reset', {})
+}
+
+
+export function test() {
+   return request.post('/test', {})
 }

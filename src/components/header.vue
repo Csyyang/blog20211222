@@ -51,8 +51,9 @@ const userData = computed(() => store.state.user.userData)
 /**
  * 登出
  */
-const logout = () => {
-    store.dispatch('user/logOut')
+const logout = async () => {
+    const res = await store.dispatch('user/logOut')
+    if (!res) return
     MessagePlugin.success('登出成功')
 }
 

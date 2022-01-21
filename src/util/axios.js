@@ -13,12 +13,12 @@ const request = axios.create({
 
 request.interceptors.request.use(
     async config => {
-        loadingInstance =  ElLoading.service()
+        loadingInstance = ElLoading.service()
 
-        let token  = store.state.user.token
+        // let token  = store.state.user.token
 
-        config.headers['x-token'] = token?token:''
-        
+        // config.headers['x-token'] = token?token:''
+
         return config
     },
     error => {
@@ -40,8 +40,12 @@ request.interceptors.response.use(
 
     },
     err => {
-        console.log(err)
-        return Promise.reject(error)
+
+        if (err.response.status == 302) {
+            window.location.href = err.response.data
+            return err.response.data
+        }
+        return Promise.reject(err)
     }
 )
 

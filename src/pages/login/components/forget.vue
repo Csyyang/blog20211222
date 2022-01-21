@@ -1,5 +1,45 @@
 <script setup>
+import { ref } from 'vue'
+import { checkEmail, reset } from 'api/user'
+
 const emits = defineEmits(['chagnState'])
+/**
+ * 弹出框
+ */
+const visible = ref(false)
+const onCancel = () => {
+    visible.value = false
+}
+const onConfirmAnother = (context) => {
+    console.log('点击了确认按钮', context);
+    visible.value = false;
+    sendEmial()
+}
+
+/**
+ * 确认邮件是否正确
+ */
+const eamil = ref('')
+const send = async () => {
+    const res = await checkEmail({
+        email: email.value
+    })
+    if (res.code === '00') {
+        visible.value = true
+    }
+}
+
+/**
+ * 发送邮件
+ */
+const sendEmial = async() => {
+    const res = await reset()
+    if(res.code === '00') {
+        console.log('发送成功,请查收')
+
+        // 重复发送
+    }
+}
 </script>
 
 <template>
@@ -8,7 +48,7 @@ const emits = defineEmits(['chagnState'])
 
         <label class="labels" for="email">
             邮箱
-            <input id="email" type="text" />
+            <input id="email" v-model="eamil" type="text" />
         </label>
 
         <div class="other">
@@ -16,7 +56,15 @@ const emits = defineEmits(['chagnState'])
             <button class @click="emits('chagnState', 'register')">注册</button>
         </div>
 
-        <div class="btn">发送</div>
+        <t-dialog
+            v-model:visible="visible"
+            header="提示"
+            body="确认发送重置密码邮件"
+            @onClose="onCancel"
+            @confirmBtn="onConfirmAnother"
+        />
+
+        <div class="btn" @click="send">发送</div>
     </div>
 </template>
 
