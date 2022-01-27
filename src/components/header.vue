@@ -15,7 +15,7 @@ const router = useRouter()
 const links = (link) => {
     router.push(link)
 }
-
+//
 const navs = [
     {
         path: '/',
@@ -57,6 +57,8 @@ const logout = async () => {
     MessagePlugin.success('登出成功')
 }
 
+
+
 </script>
 
 <template>
@@ -75,7 +77,8 @@ const logout = async () => {
                     <el-avatar :size="36" :src="userData.avatar"></el-avatar>
                     <template #dropdown>
                         <el-dropdown-menu>
-                            <el-dropdown-item @click="links('/user')">用户信息</el-dropdown-item>
+                            <el-dropdown-item v-if="userData.account === '693765678'"  @click="router.push('/article')" >添加文章</el-dropdown-item>
+                            <el-dropdown-item @click="router.push({ path: '/login', query: { state: 'changgePass' } })">更改密码</el-dropdown-item>
                             <el-dropdown-item @click="logout" divided>退出登录</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>

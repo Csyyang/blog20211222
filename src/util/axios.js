@@ -1,7 +1,7 @@
 import axios from "axios"
 import { ElLoading } from 'element-plus'
 import { MessagePlugin } from 'tdesign-vue-next'
-import store from '@/store/store'
+// import store from '@/store/store'
 
 let loadingInstance // loading
 
@@ -42,7 +42,7 @@ request.interceptors.response.use(
     err => {
 
         if (err.response.status == 302) {
-            window.location.href = err.response.data
+            window.location.href = err.response.data.url
             return err.response.data
         }
         return Promise.reject(err)

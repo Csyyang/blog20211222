@@ -1,21 +1,24 @@
+@import './basic';
+
+
 :root {
   .el-button {
     border: none;
-    color: #dedede;
+    color: $textColor;
     background: repeating-linear-gradient(45deg, #545454, transparent 100px);
     &:hover {
       color: #409eff;
     }
   }
   .el-card {
-    background-color: rgba(96, 73, 81, 0.1);
+    background-color: $bgColor;
     border: none;
-    color: #dedede;
+    color: $textColor;
   }
   .el-dropdown__popper.el-popper[role="tooltip"] {
     background: none;
   }
-  --el-text-color-regular: #dedede;
+  --el-text-color-regular: $textColor;
   --el-border-color-light: none;
   --el-border-color-lighter: none;
   .el-dropdown-menu {
@@ -23,7 +26,15 @@
   }
   .el-dropdown-menu__item:focus,
   .el-dropdown-menu__item:not(.is-disabled):hover {
-    background-color: rgb(255,255,255,27%);
+    background-color: rgb(255, 255, 255, 27%);
+  }
+  .el-input__inner {
+    background-color: $bgColor;
+    border: none;
+  }
+  .el-textarea__inner {
+    background-color: $bgColor;
+    border: none;
   }
 }
 
@@ -48,6 +59,7 @@ body {
     height: 100%;
     overflow-y: auto;
     padding-top: 56px;
+    min-width: 1200px;
   }
 }
 

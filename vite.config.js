@@ -15,7 +15,8 @@ export default defineConfig({
       "coms": path.resolve(__dirname, './src/components'),
       "pages": path.resolve(__dirname, './src/pages'),
       "img": path.resolve(__dirname, './src/assets'),
-      "api": path.resolve(__dirname, './src/api')
+      "api": path.resolve(__dirname, './src/api'),
+      "style": path.resolve(__dirname, './src/style')
     },
     extensions: ['.js', '.json', '.mjs', '.ts']
   },

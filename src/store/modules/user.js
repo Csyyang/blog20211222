@@ -13,7 +13,8 @@ const user = {
                 token: '', // 用户标识
                 userData: {
                     username: '', // 用户名
-                    avatar: '' // 头像地址
+                    avatar: '', // 头像地址
+                    account: '' // 账号
                 }
             }
         }
@@ -25,7 +26,8 @@ const user = {
         setUserData(state, value) {
             ({
                 username: state.userData.username,
-                avatar: state.userData.avatar
+                avatar: state.userData.avatar,
+                account: state.userData.account,
             } = value);
         },
         setToken(state, value) {

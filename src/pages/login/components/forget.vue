@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { checkEmail, reset } from 'api/user'
+import { MessagePlugin } from 'tdesign-vue-next'
 
 const emits = defineEmits(['chagnState'])
 /**
@@ -36,7 +37,7 @@ const sendEmial = async() => {
     const res = await reset()
     if(res.code === '00') {
         console.log('发送成功,请查收')
-
+        MessagePlugin.success('发送成功,请查收')
         // 重复发送
     }
 }
@@ -61,7 +62,7 @@ const sendEmial = async() => {
             header="提示"
             body="确认发送重置密码邮件"
             @onClose="onCancel"
-            @confirmBtn="onConfirmAnother"
+            @confirm="onConfirmAnother"
         />
 
         <div class="btn" @click="send">发送</div>

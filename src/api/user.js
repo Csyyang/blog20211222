@@ -38,7 +38,7 @@ export function logOut(data = {}) {
  * 获取用户基本信息
  * @returns { Promise }
  */
-export function getUser(data={}) {
+export function getUser(data = {}) {
    return request.post('/user/getUser', data)
 }
 
@@ -47,15 +47,28 @@ export function getUser(data={}) {
  * @param {*} data 
  * @returns 
  */
-export function checkEmail(data={}) {
+export function checkEmail(data = {}) {
    return request.post('/user/checkEmail', data)
 }
 
-export function reset(data={}) {
+export function reset(data = {}) {
    return request.post('/user/reset', {})
+}
+
+export function ResetPassword(data = {}) {
+   return request.post('/user/ResetPassword', {})
 }
 
 
 export function test() {
    return request.post('/test', {})
+}
+
+/**
+ * 修改密码
+ * @param {*} data 
+ * @returns 
+ */
+export function ChangPassword(data = {}) {
+   return request.post('/user/ChangPassword', data)
 }

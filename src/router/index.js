@@ -17,6 +17,8 @@ const routes = [
     { path: '/links', component: links },
     { path: '/friends', component: friends },
     { path: '/login', component: login },
+    { path: '/reset', component: () => import('pages/login/reset.vue') },
+    { path:'/article', component: () => import('pages/article/index.vue') },
     { path: '/:pathMath(.*)', component: {
             render() {
                 return createVNode('div', { className: 'not-found' }, '404');

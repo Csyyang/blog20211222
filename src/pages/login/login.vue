@@ -1,21 +1,36 @@
 <script setup>
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 import loginFormVue from './components/loginForm.vue';
 import registeVue from './components/registe.vue';
 import forgetVue from './components/forget.vue';
+import changgePass from './components/changgePass.vue'
 import filterVue from '../../components/filter.vue';
 import headerVue from 'coms/header.vue'
 
 const states = ref('login')
+
+
+// 跳转到指定页面
+const route = useRoute()
+let name = route.query.state
+console.log(name)
+if (name) {
+  states.value = name
+} else {
+  states.value = 'login'
+}
+
 </script>
 
 <template>
   <div class="login">
     <headerVue />
     <div class="form-box">
-      <loginFormVue v-show="states == 'login'" @chagn-state="res => states = res"></loginFormVue>
-      <registeVue v-if="states == 'register'" @chagn-state="res => states = res" />
-      <forgetVue v-if="states == 'forget'" @chagn-state="res => states = res" />
+      <loginFormVue v-show="states === 'login'" @chagn-state="res => states = res" />
+      <registeVue v-if="states === 'register'" @chagn-state="res => states = res" />
+      <forgetVue v-if="states === 'forget'" @chagn-state="res => states = res" />
+      <changgePass v-if="states === 'changgePass'" @chagn-state="res => states = res" />
       <filterVue />
     </div>
   </div>
