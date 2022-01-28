@@ -1,13 +1,16 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive } from 'vue'
 import headerVue from '../../components/header.vue'
 import filterVue from '../../components/filter.vue'
 import markdownVue from '../../components/markdown.vue'
 import useUpload from './composables/useUpload'
 import { Plus } from '@element-plus/icons-vue'
+import { addArticle } from 'api/article'
+import { MessagePlugin } from 'tdesign-vue-next'
 
 
-const form = reactive({
+
+const init = () => ({
     title: '',
     lable: '',
     image: '',
@@ -15,8 +18,21 @@ const form = reactive({
     context: '',
 })
 
-const onSubmit = () => {
-    console.log('submit!')
+let form = reactive(init())
+
+const reset = () => {
+    Object.assign(form, init())
+}
+
+
+
+// 提交新文章
+const onSubmit = async () => {
+    const res = await addArticle(form)
+    if (res.code === '00') {
+        MessagePlugin.success('提交成功')
+        reset()
+    }
 }
 
 const options = [
@@ -25,14 +41,16 @@ const options = [
 
 /**
  * 图片上传
+
  */
+
 const { imageUrl, handleAvatarSuccess, beforeAvatarUpload } = useUpload(form)
 
 </script>
 
 <template>
+    <headerVue />
     <div class="article">
-        <headerVue />
         <div class="context">
             <el-form ref="formRef" :model="form" label-width="120px">
                 <el-form-item label="文章标题">

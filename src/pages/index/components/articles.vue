@@ -4,9 +4,22 @@ import art1 from 'img/art1.jpeg'
 import see from 'img/see.svg'
 import love from 'img/love.svg'
 import say from 'img/say.svg'
+import { getArticle } from "api/article"
 
 
 const switchValue = ref(false)
+
+
+const cardList = ref([])
+const articleList = async () => {
+    const res = await getArticle()
+    console.log(res)
+    if (res.code === '00') {
+        // return res.data
+        cardList.value = res.data
+    }
+}
+articleList()
 </script>
 
 <template>
@@ -18,15 +31,15 @@ const switchValue = ref(false)
             </div>
         </header>
 
-        <el-card class="box-card" :body-style="{ padding: '0px' }">
+        <el-card v-for="item in cardList"  class="box-card" :body-style="{ padding: '0px' }">
             <div class="img-box">
-                <img class="art-img" :src="art1" alt="art1" />
+                <img class="art-img" :src="item.image" alt="art1" />
             </div>
 
             <article class="article">
-                <title>2021年6月24日，数据分析当前是否还适合投资FIL云算力</title>
-                <time>六月 24, 2021</time>
-                <main>随着币价的下跌，最近不少人蠢蠢欲动，开始考虑是否要布局一下FIL云算力。为了让一部分不明所以、跑步入场的小白，对自己投资的项目有个较为客观的认知，接下来我会在数据面上分析下这项投资的实际可...</main>
+                <title>{{ item.title }}</title>
+                <time>{{ item.create_date }}</time>
+                <main>{{ item.brief }}...</main>
             </article>
 
             <footer>
@@ -34,134 +47,15 @@ const switchValue = ref(false)
 
                 <div class="tag">
                     <object class="see" :data="see" type="image/svg+xml"></object>
-                    <span>1</span>
+                    <span>{{ item.view }}</span>
                     <object class="love" :data="love" type="image/svg+xml"></object>
-                    <span>2</span>
+                    <span>{{ item.likes }}</span>
                     <object class="say" :data="say" type="image/svg+xml"></object>
-                    <span>3</span>
+                    <span>{{ item.comment }}</span>
                 </div>
             </footer>
         </el-card>
-        <el-card class="box-card" :body-style="{ padding: '0px' }">
-            <div class="img-box">
-                <img class="art-img" :src="art1" alt="art1" />
-            </div>
-
-            <article class="article">
-                <title>2021年6月24日，数据分析当前是否还适合投资FIL云算力</title>
-                <time>六月 24, 2021</time>
-                <main>随着币价的下跌，最近不少人蠢蠢欲动，开始考虑是否要布局一下FIL云算力。为了让一部分不明所以、跑步入场的小白，对自己投资的项目有个较为客观的认知，接下来我会在数据面上分析下这项投资的实际可...</main>
-            </article>
-
-            <footer>
-                <el-button>开始阅读</el-button>
-
-                <div class="tag">
-                    <object class="see" :data="see" type="image/svg+xml"></object>
-                    <span>1</span>
-                    <object class="love" :data="love" type="image/svg+xml"></object>
-                    <span>2</span>
-                    <object class="say" :data="say" type="image/svg+xml"></object>
-                    <span>3</span>
-                </div>
-            </footer>
-        </el-card>
-        <el-card class="box-card" :body-style="{ padding: '0px' }">
-            <div class="img-box">
-                <img class="art-img" :src="art1" alt="art1" />
-            </div>
-
-            <article class="article">
-                <title>2021年6月24日，数据分析当前是否还适合投资FIL云算力</title>
-                <time>六月 24, 2021</time>
-                <main>随着币价的下跌，最近不少人蠢蠢欲动，开始考虑是否要布局一下FIL云算力。为了让一部分不明所以、跑步入场的小白，对自己投资的项目有个较为客观的认知，接下来我会在数据面上分析下这项投资的实际可...</main>
-            </article>
-
-            <footer>
-                <el-button>开始阅读</el-button>
-
-                <div class="tag">
-                    <object class="see" :data="see" type="image/svg+xml"></object>
-                    <span>1</span>
-                    <object class="love" :data="love" type="image/svg+xml"></object>
-                    <span>2</span>
-                    <object class="say" :data="say" type="image/svg+xml"></object>
-                    <span>3</span>
-                </div>
-            </footer>
-        </el-card>
-        <el-card class="box-card" :body-style="{ padding: '0px' }">
-            <div class="img-box">
-                <img class="art-img" :src="art1" alt="art1" />
-            </div>
-
-            <article class="article">
-                <title>2021年6月24日，数据分析当前是否还适合投资FIL云算力</title>
-                <time>六月 24, 2021</time>
-                <main>随着币价的下跌，最近不少人蠢蠢欲动，开始考虑是否要布局一下FIL云算力。为了让一部分不明所以、跑步入场的小白，对自己投资的项目有个较为客观的认知，接下来我会在数据面上分析下这项投资的实际可...</main>
-            </article>
-
-            <footer>
-                <el-button>开始阅读</el-button>
-
-                <div class="tag">
-                    <object class="see" :data="see" type="image/svg+xml"></object>
-                    <span>1</span>
-                    <object class="love" :data="love" type="image/svg+xml"></object>
-                    <span>2</span>
-                    <object class="say" :data="say" type="image/svg+xml"></object>
-                    <span>3</span>
-                </div>
-            </footer>
-        </el-card>
-        <el-card class="box-card" :body-style="{ padding: '0px' }">
-            <div class="img-box">
-                <img class="art-img" :src="art1" alt="art1" />
-            </div>
-
-            <article class="article">
-                <title>2021年6月24日，数据分析当前是否还适合投资FIL云算力</title>
-                <time>六月 24, 2021</time>
-                <main>随着币价的下跌，最近不少人蠢蠢欲动，开始考虑是否要布局一下FIL云算力。为了让一部分不明所以、跑步入场的小白，对自己投资的项目有个较为客观的认知，接下来我会在数据面上分析下这项投资的实际可...</main>
-            </article>
-
-            <footer>
-                <el-button>开始阅读</el-button>
-
-                <div class="tag">
-                    <object class="see" :data="see" type="image/svg+xml"></object>
-                    <span>1</span>
-                    <object class="love" :data="love" type="image/svg+xml"></object>
-                    <span>2</span>
-                    <object class="say" :data="say" type="image/svg+xml"></object>
-                    <span>3</span>
-                </div>
-            </footer>
-        </el-card>
-        <el-card class="box-card" :body-style="{ padding: '0px' }">
-            <div class="img-box">
-                <img class="art-img" :src="art1" alt="art1" />
-            </div>
-
-            <article class="article">
-                <title>2021年6月24日，数据分析当前是否还适合投资FIL云算力</title>
-                <time>六月 24, 2021</time>
-                <main>随着币价的下跌，最近不少人蠢蠢欲动，开始考虑是否要布局一下FIL云算力。为了让一部分不明所以、跑步入场的小白，对自己投资的项目有个较为客观的认知，接下来我会在数据面上分析下这项投资的实际可...</main>
-            </article>
-
-            <footer>
-                <el-button>开始阅读</el-button>
-
-                <div class="tag">
-                    <object class="see" :data="see" type="image/svg+xml"></object>
-                    <span>1</span>
-                    <object class="love" :data="love" type="image/svg+xml"></object>
-                    <span>2</span>
-                    <object class="say" :data="say" type="image/svg+xml"></object>
-                    <span>3</span>
-                </div>
-            </footer>
-        </el-card>
+   
     </section>
 </template>
 
@@ -183,6 +77,7 @@ const switchValue = ref(false)
         height: 365px;
         width: 100%;
         overflow: hidden;
+        background-color: rgb(223 223 223 / 12%);
         .art-img {
             display: block;
             object-fit: cover;
@@ -205,7 +100,7 @@ const switchValue = ref(false)
             font-weight: 500;
         }
         time {
-            color: #DEDEDE;
+            color: #dedede;
             font-size: 14px;
         }
         main {
