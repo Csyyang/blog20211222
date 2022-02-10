@@ -1,10 +1,12 @@
 <script setup>
-import { ref } from 'vue'
-import art1 from 'img/art1.jpeg'
+import { ref, computed } from 'vue'
 import see from 'img/see.svg'
 import love from 'img/love.svg'
 import say from 'img/say.svg'
-import { getArticle } from "api/article"
+import { getArticle, likes } from "api/article"
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import { MessagePlugin } from 'tdesign-vue-next'
 
 
 const switchValue = ref(false)
@@ -20,6 +22,31 @@ const articleList = async () => {
     }
 }
 articleList()
+
+const store = useStore()
+const account = computed(() => {
+    return store.state.user.userData.account
+})
+
+
+// 点赞
+const router = useRouter()
+const likeMethod = async (id, index) => {
+    if (!account.value) {
+        MessagePlugin.error("请登录后操作")
+        router.push('/login')
+        return
+    }
+
+    const res = await likes({ id, account: account.value })
+    if (res.code === '00') {
+        if (res.message === 'add') {
+            cardList.value[index].likes = String(Number(cardList.value[index].likes) + 1)
+        } else {
+            cardList.value[index].likes = String(Number(cardList.value[index].likes) - 1)
+        }
+    }
+}
 </script>
 
 <template>
@@ -31,7 +58,7 @@ articleList()
             </div>
         </header>
 
-        <el-card v-for="item in cardList" class="box-card" :body-style="{ padding: '0px' }">
+        <el-card v-for="(item, index) in cardList" class="box-card" :body-style="{ padding: '0px' }">
             <div class="img-box">
                 <img class="art-img" :src="item.image" alt="art1" />
             </div>
@@ -43,13 +70,17 @@ articleList()
             </article>
 
             <footer>
-                <el-button @click="$router.push({ path: '/articleContext', query: { articleId: item.id } })">开始阅读</el-button>
+                <el-button
+                    @click="$router.push({ path: '/articleContext', query: { articleId: item.id } })"
+                >开始阅读</el-button>
 
                 <div class="tag">
                     <object class="see" :data="see" type="image/svg+xml"></object>
                     <span>{{ item.view }}</span>
-                    <object class="love" :data="love" type="image/svg+xml"></object>
-                    <span>{{ item.likes }}</span>
+                    <div class="flex-center" @click="likeMethod(item.id, index)">
+                        <object class="love" :data="love" type="image/svg+xml"></object>
+                        <span>{{ item.likes }}</span>
+                    </div>
                     <object class="say" :data="say" type="image/svg+xml"></object>
                     <span>{{ item.comment }}</span>
                 </div>

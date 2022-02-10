@@ -24,3 +24,7 @@ export function addArticle(data = {}) {
 export function getArticle(data = {}) {
     return request.post('/article/getArticle', data)
 }
+
+export function likes(data = {}) {
+    return request.post('/article/like',data)
+}
