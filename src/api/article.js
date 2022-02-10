@@ -19,6 +19,7 @@ export function addArticle(data = {}) {
 /**
  * 获取文章
  * @param {*} data 
+ * @param { string } data.id  文章id
  */
 export function getArticle(data = {}) {
     return request.post('/article/getArticle', data)

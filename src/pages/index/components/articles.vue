@@ -31,7 +31,7 @@ articleList()
             </div>
         </header>
 
-        <el-card v-for="item in cardList"  class="box-card" :body-style="{ padding: '0px' }">
+        <el-card v-for="item in cardList" class="box-card" :body-style="{ padding: '0px' }">
             <div class="img-box">
                 <img class="art-img" :src="item.image" alt="art1" />
             </div>
@@ -43,7 +43,7 @@ articleList()
             </article>
 
             <footer>
-                <el-button>开始阅读</el-button>
+                <el-button @click="$router.push({ path: '/articleContext', query: { articleId: item.id } })">开始阅读</el-button>
 
                 <div class="tag">
                     <object class="see" :data="see" type="image/svg+xml"></object>
@@ -55,7 +55,6 @@ articleList()
                 </div>
             </footer>
         </el-card>
-   
     </section>
 </template>
 

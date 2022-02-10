@@ -17,6 +17,7 @@ const routes = [
     { path: '/links', component: links },
     { path: '/friends', component: friends },
     { path: '/login', component: login },
+    { path: '/articleContext', component:() =>import('pages/article/articleContext.vue')  },
     { path: '/reset', component: () => import('pages/login/reset.vue') },
     { path:'/article', component: () => import('pages/article/index.vue') },
     { path: '/:pathMath(.*)', component: {

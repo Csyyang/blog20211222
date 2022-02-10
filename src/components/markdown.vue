@@ -27,10 +27,10 @@ const data = computed(() => {
 
 
 <style lang="scss">
-@import 'style/basic';
+@import "style/basic";
 
 #markdowm {
-    background: $bgColor;
+    background: rgb(255 255 255 / 45%);
     overflow-y: auto;
     color: #111111;
     h1,
@@ -138,7 +138,7 @@ code {
     code,
     pre {
         border-radius: 3px;
-        background-color: #f7f7f7;
+        background-color: #c1c1c1;
         color: inherit;
     }
 
