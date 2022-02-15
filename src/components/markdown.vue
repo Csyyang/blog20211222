@@ -247,12 +247,12 @@ code .comment {
         font-size: 100%;
         margin: 0;
         vertical-align: baseline;
-        *vertical-align: middle;
+        // *vertical-align: middle;
     }
     button,
     input {
         line-height: normal;
-        *overflow: visible;
+        overflow: visible;
     }
     button::-moz-focus-inner,
     input::-moz-focus-inner {
@@ -422,7 +422,7 @@ code .comment {
         border: 0;
     }
     table {
-        *border-collapse: collapse; /* IE7 and lower */
+        border-collapse: collapse; /* IE7 and lower */
         border-spacing: 0;
         width: 100%;
     }

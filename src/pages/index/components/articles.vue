@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, reactive } from 'vue'
 import see from 'img/see.svg'
 import love from 'img/love.svg'
 import say from 'img/say.svg'
@@ -7,6 +7,7 @@ import { getArticle, likes } from "api/article"
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { MessagePlugin } from 'tdesign-vue-next'
+import commentVue  from './comment.vue'
 
 
 const switchValue = ref(false)
@@ -18,7 +19,12 @@ const articleList = async () => {
     console.log(res)
     if (res.code === '00') {
         // return res.data
-        cardList.value = res.data
+        cardList.value = res.data.map((item) => {
+            return Object.assign(item, {
+                showComment: false,
+                value: ''
+            })
+        })
     }
 }
 articleList()
@@ -47,6 +53,34 @@ const likeMethod = async (id, index) => {
         }
     }
 }
+
+/**
+ * 评论
+ */
+const parentComment = reactive({})
+
+const submit = async (item) => {
+    console.log(item)
+    const res = await setComment({
+        account: account.value,
+        comment_context: item.value,
+        article_id: item.id,
+        parent_comment_id: 0,
+        comment_level: '1',
+        replay_account: item.account
+    })
+
+}
+const showComment = async (item) => {
+    item.showComment = !item.showComment
+    // if (item.showComment) {
+    //     const res = await getComment({
+    //         id: item.id,
+    //         level: '1'
+    //     })
+    //     Object.assign(parentComment, res.data)
+    // }
+}
 </script>
 
 <template>
@@ -58,7 +92,11 @@ const likeMethod = async (id, index) => {
             </div>
         </header>
 
-        <el-card v-for="(item, index) in cardList" class="box-card" :body-style="{ padding: '0px' }">
+        <el-card
+            v-for="(item, index) in cardList"
+            class="box-card"
+            :body-style="{ padding: '0px' }"
+        >
             <div class="img-box">
                 <img class="art-img" :src="item.image" alt="art1" />
             </div>
@@ -82,9 +120,11 @@ const likeMethod = async (id, index) => {
                         <span>{{ item.likes }}</span>
                     </div>
                     <object class="say" :data="say" type="image/svg+xml"></object>
-                    <span>{{ item.comment }}</span>
+                    <span @click="showComment(item)">{{ item.comment }}</span>
                 </div>
             </footer>
+            <commentVue :showComment="item.showComment" :data="item" />
+            
         </el-card>
     </section>
 </template>

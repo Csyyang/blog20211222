@@ -72,3 +72,7 @@ export function test() {
 export function ChangPassword(data = {}) {
    return request.post('/user/ChangPassword', data)
 }
+
+// export function getUserImage(account) {
+//    return request.post('/user/getUserImg', account)
+// }

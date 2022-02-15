@@ -25,6 +25,11 @@ export function getArticle(data = {}) {
     return request.post('/article/getArticle', data)
 }
 
+/**
+ * 点赞
+ * @param {} data 
+ * @returns 
+ */
 export function likes(data = {}) {
-    return request.post('/article/like',data)
+    return request.post('/article/like', data)
 }
