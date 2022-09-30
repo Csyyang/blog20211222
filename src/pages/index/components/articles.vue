@@ -1,13 +1,10 @@
 <script setup>
 import { ref, computed, reactive } from 'vue'
-import see from 'img/see.svg'
-import love from 'img/love.svg'
-import say from 'img/say.svg'
 import { getArticle, likes } from "api/article"
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { MessagePlugin } from 'tdesign-vue-next'
-import commentVue  from './comment.vue'
+import commentVue from './comment.vue'
 
 
 const switchValue = ref(false)
@@ -113,23 +110,29 @@ const showComment = async (item) => {
                 >开始阅读</el-button>
 
                 <div class="tag">
-                    <object class="see" :data="see" type="image/svg+xml"></object>
-                    <span>{{ item.view }}</span>
-                    <div class="flex-center" @click="likeMethod(item.id, index)">
-                        <object class="love" :data="love" type="image/svg+xml"></object>
+                    <div class="flex-center">
+                        <t-icon name="browse" size="large" />
+                        <span>{{ item.view }}</span>
+                    </div>
+                    <div class="flex-center btn" key="thumbUp" @click="likeMethod(item.id, index)">
+                        <t-icon name="thumb-up" size="large" />
                         <span>{{ item.likes }}</span>
                     </div>
-                    <object class="say" :data="say" type="image/svg+xml"></object>
-                    <span @click="showComment(item)">{{ item.comment }}</span>
+                    <div class="flex-center btn" key="chat" @click="showComment(item)">
+                        <t-icon name="chat" size="large" />
+                        <span>{{ item.comment }}</span>
+                    </div>
                 </div>
             </footer>
             <commentVue :showComment="item.showComment" :data="item" />
-            
         </el-card>
     </section>
 </template>
 
 <style lang="scss" scoped>
+.btn {
+    cursor: pointer;
+}
 .text-box {
     height: 66px;
     display: flex;

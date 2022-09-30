@@ -20,6 +20,7 @@ const routes = [
     { path: '/articleContext', component:() =>import('pages/article/articleContext.vue')  },
     { path: '/reset', component: () => import('pages/login/reset.vue') },
     { path:'/article', component: () => import('pages/article/index.vue') },
+    { path:'/guestbook', component: () => import('pages/article/setGuestbook.vue') },
     { path: '/:pathMath(.*)', component: {
             render() {
                 return createVNode('div', { className: 'not-found' }, '404');

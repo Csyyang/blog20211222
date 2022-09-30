@@ -36,6 +36,9 @@
     background-color: $bgColor;
     border: none;
   }
+  .el-dialog {
+    background-color: #8a8a8a;
+  }
 
   --td-text-color-primary: $textColor;
   --td-text-color-placeholder: $textColor;

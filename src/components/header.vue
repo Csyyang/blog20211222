@@ -78,6 +78,7 @@ const logout = async () => {
                     <template #dropdown>
                         <el-dropdown-menu>
                             <el-dropdown-item v-if="userData.account === '693765678'"  @click="router.push('/article')" >添加文章</el-dropdown-item>
+                            <el-dropdown-item v-if="userData.account === '693765678'"  @click="router.push('/guestbook')" >添加碎语</el-dropdown-item>
                             <el-dropdown-item @click="router.push({ path: '/login', query: { state: 'changgePass' } })">更改密码</el-dropdown-item>
                             <el-dropdown-item @click="logout" divided>退出登录</el-dropdown-item>
                         </el-dropdown-menu>

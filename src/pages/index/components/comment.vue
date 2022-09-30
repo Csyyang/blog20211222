@@ -55,7 +55,7 @@ const submit = async () => {
         comment_context: input.value,
         article_id: props.data.id,
         parent_comment_id: 0,
-        comment_level: '1',
+        comment_level: '2',
         replay_account: props.data.account
     })
 
@@ -65,15 +65,37 @@ const submit = async () => {
 }
 
 /**
- * 获取头像
+ * 弹出层
  */
+const parent_comment_id = ref('')
+const dialogFormVisible = ref(false)
+const formLabelWidth = '140px'
+const dialogLabel = ref('')
+const form = reactive({
+    name: '',
+})
 
-// getAvatar = async (account) => {
-//     const res = await getUserImage(account)
-//     if (res.code === '00') {
-//         return
-//     }
-// }
+const showDialog = (item) => {
+    dialogFormVisible.value = true
+    dialogLabel.value = item.account // label名称
+    parent_comment_id.value = item.comment_id // 回复人id
+
+}
+const sendComment = async () => {
+    const res = await setComment({
+        account: account.value,
+        comment_context: form.context,
+        article_id: props.data.id,
+        parent_comment_id: parent_comment_id.value,
+        comment_level: '2',
+        replay_account: props.data.account
+    })
+    if (res.code === '00') {
+        dialogFormVisible = false
+    }
+
+}
+
 </script>
       
 <template >
@@ -91,7 +113,7 @@ const submit = async () => {
                     <t-icon name="thumb-up" />
                     <span class="action-text">{{ item.praise_num }}</span>
                 </span>
-                <span key="chat">
+                <span key="chat" @click="showDialog(item)">
                     <t-icon name="chat" />
                     <span class="action-text">回复</span>
                 </span>
@@ -122,6 +144,20 @@ const submit = async () => {
                         </t-comment>
             </template>-->
         </t-comment>
+
+        <el-dialog v-model="dialogFormVisible" :title="`回复${dialogLabel}`">
+            <el-form :model="form">
+                <el-form-item label="内容" :label-width="formLabelWidth">
+                    <el-input v-model="form.context" placeholder="请输入回复内容" autocomplete="off"></el-input>
+                </el-form-item>
+            </el-form>
+            <template #footer>
+                <span class="dialog-footer">
+                    <el-button @click="dialogFormVisible = false">取消</el-button>
+                    <el-button type="primary" @click="sendComment">确认</el-button>
+                </span>
+            </template>
+        </el-dialog>
     </div>
 </template>
 
